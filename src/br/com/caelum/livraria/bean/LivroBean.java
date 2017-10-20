@@ -69,7 +69,7 @@ public class LivroBean implements Serializable {
 	}
 
 	public String formAutor() {
-		System.out.println("Chamanda do formulario do Autor.");
+		System.out.println("Chamanda do formulário do Autor.");
 		return "autor?faces-redirect=true";
 	}
 

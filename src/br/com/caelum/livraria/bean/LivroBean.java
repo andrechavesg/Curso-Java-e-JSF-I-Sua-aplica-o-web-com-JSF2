@@ -3,8 +3,12 @@ package br.com.caelum.livraria.bean;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import br.com.caelum.livraria.dao.DAO;
 import br.com.caelum.livraria.modelo.Autor;
@@ -17,6 +21,7 @@ public class LivroBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Livro livro = new Livro();
+
 	private Integer autorId;
 
 	public void setAutorId(Integer autorId) {
@@ -60,4 +65,14 @@ public class LivroBean implements Serializable {
 		this.livro = new Livro();
 	}
 
+	public void comecaComDigitoUm(FacesContext fc, UIComponent component,
+			Object value) throws ValidatorException {
+
+		String valor = value.toString();
+		if (!valor.startsWith("1")) {
+			throw new ValidatorException(new FacesMessage(
+					"ISBN deveria começar com 1"));
+		}
+
+	}
 }

@@ -1,5 +1,6 @@
 package br.com.caelum.livraria.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -11,7 +12,9 @@ import br.com.caelum.livraria.modelo.Livro;
 
 @ManagedBean
 @ViewScoped
-public class LivroBean {
+public class LivroBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private Livro livro = new Livro();
 	private Integer autorId;
@@ -40,10 +43,8 @@ public class LivroBean {
 		return this.livro.getAutores();
 	}
 
-	public void adicionarAutor() {
-
+	public void gravarAutor() {
 		Autor autor = new DAO<Autor>(Autor.class).buscaPorId(this.autorId);
-		System.out.println("Usando autor " + autor.getNome());
 		this.livro.adicionaAutor(autor);
 	}
 
@@ -55,6 +56,8 @@ public class LivroBean {
 		}
 
 		new DAO<Livro>(Livro.class).adiciona(this.livro);
+
+		this.livro = new Livro();
 	}
 
 }

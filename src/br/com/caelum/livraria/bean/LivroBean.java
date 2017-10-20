@@ -68,13 +68,18 @@ public class LivroBean implements Serializable {
 		this.livro = new Livro();
 	}
 
+	public String formAutor() {
+		System.out.println("Chamanda do formulario do Autor.");
+		return "autor?faces-redirect=true";
+	}
+
 	public void comecaComDigitoUm(FacesContext fc, UIComponent component,
 			Object value) throws ValidatorException {
 
 		String valor = value.toString();
 		if (!valor.startsWith("1")) {
 			throw new ValidatorException(new FacesMessage(
-					"ISBN deveria come�ar com 1"));
+					"ISBN deveria começar com 1"));
 		}
 
 	}
